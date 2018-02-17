@@ -1,6 +1,4 @@
 <?php
-// require(__DIR__.'\vendor\altorouter\altorouter\AltoRouter.php');
-// require(__DIR__.'../controllers/CoreController.php');
 
 require_once '../inc/functions.php';
 require '../vendor/autoload.php';
