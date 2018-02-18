@@ -29,6 +29,7 @@ require_once '../inc/functions.php';
  */
 
 $userChoice = $_GET['choice'];
+
 $winCase = [
   'rock' => [
     'scissors' => true,
@@ -42,15 +43,26 @@ $winCase = [
 ];
 
 function rockPaperScissors($user) {
-
     global $winCase;
-
+    // On définie les 3 coups possibles dans un tableau indéxé
     $choices = ['rock', 'paper', 'scissors'];
+    // On vérifie que le coup est valide
+    if (!in_array($user, $choices)) {
+      return false;
+    }
 
+    do { // Au moins une fois :
+      // On effectue un choix aléatoire pour l'adversaire
+      $ia = $choices[array_rand($choices, 1)];
+      // On recommence tant qu'il y a égalité
+    } while ($user === $ia);
+    // On teste la validité au sein du tableau associatif
+    $win = isset($winCase[$user][$ia]) ? $winCase[$user][$ia] : false;
+    // On renvoie un tableau associatif
     return [
-      'user' => '', // Choix de l'utilisateur
-      'ia' => '', // Choix aléatoire
-      'win' => '', // L'utilisateur gagne ?
+      'user' => $user, // Choix de l'utilisateur
+      'ia' => $ia, // Choix aléatoire
+      'win' => $win // L'utilisateur gagne ?
     ];
 }
 
